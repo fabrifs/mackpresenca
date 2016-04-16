@@ -32,7 +32,7 @@
             }*/
         %>
         <b><h1>
-        Bem vindo professor <%=pf.getNome() %>
+        Bem vindo aluno <%=pf.getNome() %>
         <br/>
         <br/>
         Seu RA é: <%=pf.getRa() %>
@@ -41,7 +41,7 @@
         Sua data de nascimento: <%= pf.getNasc() %>
         <br/>
         <br/>
-        <a href="LogoutServlet">
+		<a href="LogoutServlet">
 				Sair do Sistema
 		</a>
 		

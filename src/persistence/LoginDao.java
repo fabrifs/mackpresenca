@@ -1,12 +1,9 @@
 package persistence;
 
-import java.util.List;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import entity.Acesso;
 import entity.PessoaFisica;
 
 public class LoginDao {
@@ -16,14 +13,17 @@ public class LoginDao {
 	private Query query;
 
 	// Método para autenticar o usuario pelo Login e Senha
-	public List listarPF() throws Exception {
+	public PessoaFisica autenticar(int ra, String senha, String tipo_acesso) throws Exception {
 		session = HibernateUtil.getSessionFactory().openSession();
-		query = session.createQuery("FROM PessoaFisica");
-
-		List<PessoaFisica> lista = query.list();
+		query = session.getNamedQuery("pessoaFisica.autenticar");
+		query.setInteger("ra", ra);
+		query.setString("senha", senha);
+		query.setString("tipo_acesso", tipo_acesso);
+		
+		PessoaFisica pf = (PessoaFisica) query.uniqueResult();
 
 		session.close();
-		return lista; // retornar o usuario
+		return pf; // retornar o usuario
 	}
 
 }

@@ -24,7 +24,6 @@
     <property name="hibernate.format_sql">true</property>
     
     <mapping class="entity.PessoaFisica"/>
-    <mapping class="entity.Acesso"/>
 
  </session-factory>
  

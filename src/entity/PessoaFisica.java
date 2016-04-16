@@ -7,13 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="PessoaFisica")
+@NamedQueries(
+		{
+			@NamedQuery(name="pessoaFisica.autenticar", 
+				query="select pf from PessoaFisica as pf where pf.ra = :ra and pf.senha = :senha and pf.tipo_acesso = :tipo_acesso")			
+		}
+)
 public class PessoaFisica {
 	
 	@Id
@@ -25,8 +32,6 @@ public class PessoaFisica {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="nasc")
 	private Date nasc;
-	@Column(name="ra")
-	private int ra;
 	@Column(name="email")
 	private String email;
 	@Column(name="endereco")
@@ -41,19 +46,25 @@ public class PessoaFisica {
 	private String cidade;
 	@Column(name="estado")
 	private String estado;
-	@OneToOne(mappedBy="pessoaFisica")
-	private Acesso acesso;
+	@Column(name="ra")
+	private int ra;
+	@Column(name="senha")
+	private String senha;
+	@Column(name="tipo_acesso")
+	private String tipo_acesso;
+	
 	
 	public PessoaFisica(){
 		
 	}
 	
-	public PessoaFisica(int id, String nome, Date nasc, int ra, String email, String endereco, int end_num, String end_compl,
-			String cep, String cidade, String estado) {
+
+	public PessoaFisica(int id, String nome, Date nasc, String email, String endereco, int end_num, String end_compl,
+			String cep, String cidade, String estado, int ra, String senha, String tipo_acesso) {
+		super();
 		this.id = id;
 		this.nome = nome;
 		this.nasc = nasc;
-		this.ra = ra;
 		this.email = email;
 		this.endereco = endereco;
 		this.end_num = end_num;
@@ -61,83 +72,144 @@ public class PessoaFisica {
 		this.cep = cep;
 		this.cidade = cidade;
 		this.estado = estado;
+		this.ra = ra;
+		this.senha = senha;
+		this.tipo_acesso = tipo_acesso;
 	}
-	
-	public void setAcesso(Acesso a){
-		this.acesso = a;
-	}
-	
-	public Acesso getAcesso(){
-		return acesso;
-	}
-	
+
+
+
+
 	public int getId() {
 		return id;
 	}
+
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
+
 	public String getNome() {
 		return nome;
 	}
+
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+
 	public Date getNasc() {
 		return nasc;
 	}
+
+
 	public void setNasc(Date nasc) {
 		this.nasc = nasc;
 	}
-	public int getRa() {
-		return ra;
-	}
-	public void setRa(int ra) {
-		this.ra = ra;
-	}
+
+
 	public String getEmail() {
 		return email;
 	}
+
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
 	public String getEndereco() {
 		return endereco;
 	}
+
+
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+
+
 	public int getEnd_num() {
 		return end_num;
 	}
+
+
 	public void setEnd_num(int end_num) {
 		this.end_num = end_num;
 	}
+
+
 	public String getEnd_compl() {
 		return end_compl;
 	}
+
+
 	public void setEnd_compl(String end_compl) {
 		this.end_compl = end_compl;
 	}
+
+
 	public String getCep() {
 		return cep;
 	}
+
+
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+
+
 	public String getCidade() {
 		return cidade;
 	}
+
+
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
+
+
 	public String getEstado() {
 		return estado;
 	}
+
+
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+
+
+	public int getRa() {
+		return ra;
+	}
+
+
+	public void setRa(int ra) {
+		this.ra = ra;
+	}
+
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+
+	public String getTipo_acesso() {
+		return tipo_acesso;
+	}
+
+
+	public void setTipo_acesso(String tipo_acesso) {
+		this.tipo_acesso = tipo_acesso;
+	}
 	
+     
 	
 
 }

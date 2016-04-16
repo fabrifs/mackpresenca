@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Login Mack PresenÃ§a</title>
+        <title >Login Mack Presença</title>
     </head>
     <body>
 
@@ -11,7 +11,7 @@
 			<input type="radio" name="tipoAcesso" value="professor"/> Professor
 			<input type="radio" name="tipoAcesso" value="aluno"/> Aluno
 			<br><br>
-            RA: <input type="text" name="ra" required/>
+           	RA:<input type="text" name="ra" required/>
             <br>
             Senha: <input type="password" name="senha" required/>
             <br>
@@ -22,5 +22,6 @@
             
         </form>
      
+     <p style="color:red;"><b>${msg}</b></p>
     </body>
 </html>

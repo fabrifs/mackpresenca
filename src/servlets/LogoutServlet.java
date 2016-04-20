@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import entity.PessoaFisica;
+
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,12 +26,13 @@ public class LogoutServlet extends HttpServlet {
 		try {
 			
 			HttpSession session = request.getSession();
-			session.removeAttribute("pf");
+			PessoaFisica pf = (PessoaFisica) session.getAttribute("pf");
+			session.removeAttribute("pf");			
 			session.invalidate();		
 			//request.setAttribute("msg", "Obrigado por usar o sistema.");
 			 RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.jsp");
              PrintWriter out = response.getWriter();
-             out.println("<font color=green>Obrigado por usar o sistema.</font>");
+             out.println("<font color=green>Obrigado por usar o sistema, "+pf.getNome() + ".</font>");
              rd.include(request, response);
          
 		} catch (Exception e) {

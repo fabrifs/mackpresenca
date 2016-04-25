@@ -22,6 +22,11 @@ public class LoginController extends AbstractController {
 			
 			if(pf!= null){
 				HttpSession session = this.getRequest().getSession();
+				if(pf.getDisciplinaHorario() != null){
+					session.setAttribute("lista", pf.getDisciplinaHorario());
+				}else{
+					throw new Exception("FODEU AQUI");
+				}				
 				session.setAttribute("pf", pf); //gravando o objeto usuario em sessão!
 				if(tipo_acesso.equals("aluno")){
 					this.setReturnPage("/homeAluno.jsp");

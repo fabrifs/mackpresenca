@@ -1,12 +1,17 @@
 package entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -53,14 +58,20 @@ public class PessoaFisica {
 	@Column(name="tipo_acesso")
 	private String tipo_acesso;
 	
+	//TESTE
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name="pessoaFisicaDisciplina", joinColumns = @JoinColumn(name="pessoaFisica"), inverseJoinColumns = @JoinColumn(name="disciplinaHorario"))
+	private List<DisciplinaHorario> disciplinaHorario;
+	
 	
 	public PessoaFisica(){
 		
 	}
-	
+
 
 	public PessoaFisica(int id, String nome, Date nasc, String email, String endereco, int end_num, String end_compl,
-			String cep, String cidade, String estado, int ra, String senha, String tipo_acesso) {
+			String cep, String cidade, String estado, int ra, String senha, String tipo_acesso,
+			List<DisciplinaHorario> disciplinaHorario) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -75,9 +86,8 @@ public class PessoaFisica {
 		this.ra = ra;
 		this.senha = senha;
 		this.tipo_acesso = tipo_acesso;
+		this.disciplinaHorario = disciplinaHorario;
 	}
-
-
 
 
 	public int getId() {
@@ -208,8 +218,17 @@ public class PessoaFisica {
 	public void setTipo_acesso(String tipo_acesso) {
 		this.tipo_acesso = tipo_acesso;
 	}
+
+
+	public List<DisciplinaHorario> getDisciplinaHorario() {
+		return disciplinaHorario;
+	}
+
+
+	public void setDisciplinaHorario(List<DisciplinaHorario> disciplinaHorario) {
+		this.disciplinaHorario = disciplinaHorario;
+	}
 	
-     
 	
 
 }

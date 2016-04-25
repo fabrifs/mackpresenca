@@ -24,6 +24,8 @@
     <property name="hibernate.format_sql">true</property>
     
     <mapping class="entity.PessoaFisica"/>
+    <mapping class="entity.Disciplina"/>
+    <mapping class="entity.DisciplinaHorario"/>
 
  </session-factory>
  

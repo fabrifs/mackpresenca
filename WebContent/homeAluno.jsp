@@ -40,6 +40,18 @@
         <br/>
         Sua data de nascimento: <%= pf.getNasc() %>
         <br/>
+        
+        <c:forEach items="${lista}" var="dh">
+        </br></br>
+        Disciplina: ${dh.disciplina.nomeDisciplina }</br>
+        Turma: ${dh.turma }</br>
+        Período: ${dh.periodo}</br>
+        Dia da Semana: ${dh.diaSemana }</br>
+        Predio Padrão: ${dh.predioPadrao }</br>
+        Sala Padrão: ${dh.salaPadrao}
+        
+        </br></br>
+        </c:forEach>
         <br/>
 		<a href="LogoutServlet">
 				Sair do Sistema

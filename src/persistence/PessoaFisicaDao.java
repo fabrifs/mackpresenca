@@ -6,7 +6,7 @@ import org.hibernate.Transaction;
 
 import entity.PessoaFisica;
 
-public class LoginDao {
+public class PessoaFisicaDao {
 
 	private Session session;
 	private Transaction transaction;
@@ -19,6 +19,17 @@ public class LoginDao {
 		query.setInteger("ra", ra);
 		query.setString("senha", senha);
 		query.setString("tipo_acesso", tipo_acesso);
+		
+		PessoaFisica pf = (PessoaFisica) query.uniqueResult();
+
+		session.close();
+		return pf; // retornar o usuario
+	}
+	
+	public PessoaFisica listaPorId(int id) throws Exception {
+		session = HibernateUtil.getSessionFactory().openSession();
+		query = session.getNamedQuery("pessoaFisica.listaPorId");
+		query.setInteger("id", id);
 		
 		PessoaFisica pf = (PessoaFisica) query.uniqueResult();
 

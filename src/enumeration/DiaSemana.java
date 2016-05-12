@@ -2,15 +2,15 @@ package enumeration;
 
 public enum DiaSemana {
 	
-	SEGUNDA("SEGUNDA"), TERÇA("TERÇA"), QUARTA("QUARTA"), QUINTA("QUINTA"), SEXTA("SEXTA");
+	SEGUNDA(1), TERÇA(2), QUARTA(3), QUINTA(4), SEXTA(5);
 	
-	private String dia;
+	private int dia;
 	
-	private DiaSemana(String diaSemana){
+	private DiaSemana(int diaSemana){
 		this.dia= diaSemana;
 	}
 	
-	public String toString(){
+	public int toInt(){
 		return this.dia;
 	}
 

@@ -6,12 +6,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import enumeration.DiaSemana;
@@ -19,6 +22,12 @@ import enumeration.Periodo;
 
 @Entity
 @Table(name="DisciplinaHorario")
+@NamedQueries(
+		{
+			@NamedQuery(name="disciplinaHorario.listarPorID",
+				query="select dh from DisciplinaHorario as dh join fetch dh.pessoaFisica where dh.id = :id")			
+		}
+)
 public class DisciplinaHorario {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

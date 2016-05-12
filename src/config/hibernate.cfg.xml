@@ -26,6 +26,7 @@
     <mapping class="entity.PessoaFisica"/>
     <mapping class="entity.Disciplina"/>
     <mapping class="entity.DisciplinaHorario"/>
+    <mapping class="entity.Aula"/>
 
  </session-factory>
  

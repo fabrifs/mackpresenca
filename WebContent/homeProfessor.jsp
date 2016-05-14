@@ -37,7 +37,7 @@
 		}*/
 	%>
 	<b>
-	
+			<p style="color:red;">${msg}</p>
 			Bem vindo professor
 			<%=pf.getNome()%>
 			<br /> <br /> Seu RA é:
@@ -47,7 +47,7 @@
 			<br /> <br />
 			<c:if test="<%=dhteste != null%>">
         		DH:<%=dhteste.getTurma()%>
-        		<form action="AulaServlet?control=Aula" method="post"> 
+        		<form action="AulaServlet?control=AulaComeco" method="post"> 
         		<input type="hidden" value="<%=pf.getId()%>" name="pflogada"/> 
         			<input type="hidden" value="<%= dhteste.getId() %>" name="dhagoraid"/>   		
         			Sala Padrão: <input type="text" name="sala" value="<%=dhteste.getSalaPadrao()%>"/>

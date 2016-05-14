@@ -24,6 +24,7 @@ public class LoginController extends AbstractController {
 				throw new Exception("Tipo indefinido. Tente novamente.");
 			}
 		} catch (Exception e) {
+			this.setReturnPage("/login.jsp");
 			this.getRequest().setAttribute("msg", e.getMessage());
 		}
 	}
@@ -49,7 +50,7 @@ public class LoginController extends AbstractController {
 			this.setReturnPage("/homeAluno.jsp");
 
 		} else {
-			this.setReturnPage("/login.jsp");
+			
 			throw new Exception("Aluno não encontrado.");
 		}
 
@@ -93,7 +94,7 @@ public class LoginController extends AbstractController {
 			this.setReturnPage("/homeProfessor.jsp");
 
 		} else {
-			this.setReturnPage("/login.jsp");
+			
 			throw new Exception("Professor não encontrado.");
 		}
 

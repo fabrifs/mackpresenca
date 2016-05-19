@@ -7,23 +7,28 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Aula_Presenca")
+@NamedQueries(
+		{
+			@NamedQuery(name="presenca.contaFaltas",
+					query="select count(pres.id) from Presenca as pres where pres.idAluno = :idAluno and pres.idDisciplina = :idDisciplina")
+		}
+)
 public class Presenca {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private int id;
-
 	@Column(name = "aula")
 	private int idAula;
-
 	@Column(name = "aluno")
 	private int idAluno;
-
 	@Column(name = "disciplina")
 	private int idDisciplina;
 	

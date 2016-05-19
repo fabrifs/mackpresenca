@@ -30,10 +30,20 @@ public class Disciplina {
 	private String curso;
 	@OneToMany(mappedBy="disciplina", fetch=FetchType.EAGER)
 	private Collection<DisciplinaHorario> disciplinaHorario;
+
 	
 	//TALVEZ TENHA LISTA DE DISCIPLINAS
 	
 	
+	public Collection<DisciplinaHorario> getDisciplinaHorario() {
+		return disciplinaHorario;
+	}
+
+	public void setDisciplinaHorario(Collection<DisciplinaHorario> disciplinaHorario) {
+		this.disciplinaHorario = disciplinaHorario;
+	}
+
+
 	public Disciplina() {
 		// TODO Auto-generated constructor stub
 	}

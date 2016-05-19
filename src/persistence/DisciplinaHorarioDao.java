@@ -23,5 +23,15 @@ public class DisciplinaHorarioDao {
 		session.close();
 		return dh; // 
 	}
+	
+	public List<DisciplinaHorario> listaPorIdPf(int idPF) throws Exception {
+		session = HibernateUtil.getSessionFactory().openSession();
+		query = session.getNamedQuery("disciplinaHorario.listarPorIDPF");
+		query.setInteger("idpf", idPF);
+		List<DisciplinaHorario> dh = query.list();
+
+		session.close();
+		return dh; // 
+	}
 
 }

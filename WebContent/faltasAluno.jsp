@@ -31,7 +31,7 @@
                 }
             }*/
         %>
-        <b>
+        <b><h1>
         Bem vindo aluno <%=pf.getNome() %>
         <br/>
         <br/>
@@ -41,31 +41,20 @@
         Sua data de nascimento: <%= pf.getNasc() %>
         <br/>
         
-        <c:forEach items="${lista}" var="dh">
-        </br></br>
-        Disciplina: ${dh.disciplina.nomeDisciplina }</br>
-        Turma: ${dh.turma }</br>
-        Período: ${dh.periodo}</br>
-        Dia da Semana: ${dh.diaSemana }</br>
-        Predio Padrão: ${dh.predioPadrao }</br>
-        Sala Padrão: ${dh.salaPadrao}
-        
-        </br></br>
+        <c:forEach items="${disciplinas}" var="map">
+        </br>
+        Disciplina: ${map.key }</br>
+        Falta: ${map.value }</br>
+
         </c:forEach>
         <br/>
 		<a href="LogoutServlet">
 				Sair do Sistema
 		</a>
-		<br/><br/>
-		<form action="FaltaServlet?control=VerificaFalta" method="post">
-			<input type="hidden" name="idAluno" value="<%= pf.getId() %>"/>
-			<input type="submit" value="Listar Faltas"/>
-		</form>
-
 		
 		
         
-        </b>
+        </b></h1>
         <br>
 
 </body>

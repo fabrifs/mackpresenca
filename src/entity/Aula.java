@@ -23,7 +23,7 @@ import javax.persistence.TemporalType;
 			@NamedQuery(name="aula.validaInicio", 
 					query="select au from Aula as au where au.disciplinaHorario.id = :idDh and au.professor.id = :idProfessor"),	
 			@NamedQuery(name="aula.findById", 
-			query="select au from Aula as au where au.id= :id")		
+				query="select au from Aula as au where au.id= :id")		
 		}
 )
 public class Aula {

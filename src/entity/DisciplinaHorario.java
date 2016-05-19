@@ -25,7 +25,9 @@ import enumeration.Periodo;
 @NamedQueries(
 		{
 			@NamedQuery(name="disciplinaHorario.listarPorID",
-				query="select dh from DisciplinaHorario as dh join fetch dh.pessoaFisica where dh.id = :id")			
+					query="select dh from DisciplinaHorario as dh join fetch dh.pessoaFisica where dh.id = :id"),
+			@NamedQuery(name="disciplinaHorario.listarPorIDPF",
+			query="select dh from DisciplinaHorario as dh where dh.pessoaFisica.id = :idpf")	
 		}
 )
 public class DisciplinaHorario {
@@ -33,7 +35,7 @@ public class DisciplinaHorario {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	private int id;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="disciplina")
 	private Disciplina disciplina;
 	@Column(name="turma")

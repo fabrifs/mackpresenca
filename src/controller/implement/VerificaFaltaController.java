@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import controllers.AbstractController;
 import entity.Disciplina;
 import entity.DisciplinaHorario;
+import entity.Falta;
 import persistence.DisciplinaHorarioDao;
 import persistence.PresencaDao;
 
@@ -49,15 +50,25 @@ public class VerificaFaltaController extends AbstractController{
 		
 		PresencaDao pd = new PresencaDao();
 		
-		Map<String, Integer> discFalta = new HashMap<>();
+		List<Falta> faltasList = new ArrayList<>();
 		
 		for(Disciplina dis : disciplinas){
-			int faltas = pd.listaFaltas(idAluno, dis.getId());			
-			discFalta.put(dis.getNomeDisciplina(), faltas);
+			int faltas = pd.listaFaltas(idAluno, dis.getId());	
+			Falta falta = new Falta();
+			falta.setNomeDisciplina(dis.getNomeDisciplina());
+			falta.setPorcentagemPermitida(dis.getCargaHoraria() * 0.25);
+			falta.setQuantidadeAulas(dis.getCargaHoraria());
+			falta.setQuantidadeFaltas(faltas);
+			if((faltas * 100)/dis.getCargaHoraria() < 25.0){
+				falta.setPorcentagemFaltasRestante(25.0 -(faltas * 100)/dis.getCargaHoraria());
+			}else{
+				falta.setPorcentagemFaltasRestante(0.0);
+			}
+			faltasList.add(falta);
 		}
 		
 		HttpSession session = this.getRequest().getSession();
-		session.setAttribute("disciplinas", discFalta);
+		session.setAttribute("faltas", faltasList);
 		
 	}
 

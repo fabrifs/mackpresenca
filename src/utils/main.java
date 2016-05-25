@@ -1,8 +1,8 @@
 package utils;
 
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public class main {
@@ -22,7 +22,8 @@ public class main {
 		
 		System.out.println("Date depois: " + sdf.format(data));
 
-		
+		Time time = new Time(1);
+		System.out.println(time.getHours());
 		
 
 	}

@@ -28,6 +28,7 @@
     <mapping class="entity.DisciplinaHorario"/>
     <mapping class="entity.Aula"/>
     <mapping class="entity.Presenca"/>
+    <mapping class="entity.Monitor"/>
 
  </session-factory>
  

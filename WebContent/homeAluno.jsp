@@ -63,9 +63,18 @@
 		</form>
 
 		
-		
+		<form action="LoginServlet?control=Monitor" method="post">
+			<input type="hidden" value="listar" name="operacao"/>
+			<input type="hidden" value="aluno" name="tipoAcesso"/>
+			<input type="hidden" value="<%= pf.getId() %>" name="idPf"/>
+			
+			
+ 			<input type="submit" value="Listar Monitor"/>
+		</form>
         
         </b>
+        
+        ${msg }
         <br>
 
 </body>

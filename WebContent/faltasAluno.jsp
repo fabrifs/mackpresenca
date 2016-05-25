@@ -41,15 +41,18 @@
         Sua data de nascimento: <%= pf.getNasc() %>
         <br/>
         
-        <c:forEach items="${disciplinas}" var="map">
+        <c:forEach items="${faltas}" var="falta">
         </br>
-        Disciplina: ${map.key }</br>
-        Falta: ${map.value }</br>
-
+               
+        Disciplina: ${falta.nomeDisciplina }</br>
+        Quantidade Aulas: ${falta.quantidadeAulas }<br/>
+        Quantidade Faltas: ${falta.quantidadeFaltas }<br/>
+        Porcentagem Permitida: ${falta.porcentagemPermitida }</br>
+		Porcentagem Faltas Restante: ${falta.porcentagemFaltasRestante }<br/>
         </c:forEach>
         <br/>
-		<a href="LogoutServlet">
-				Sair do Sistema
+		<a href="homeAluno.jsp">
+				Voltar para Home
 		</a>
 		
 		

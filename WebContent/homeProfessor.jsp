@@ -74,7 +74,17 @@
 			</c:forEach>
 			</c:if>
 			<br /> <a href="LogoutServlet"> Sair do Sistema </a></b>
+			
 	<br>
+	
+	<form action="LoginServlet?control=Monitor" method="post">
+			<input type="hidden" value="listar" name="operacao"/>
+			<input type="hidden" value="professor" name="tipoAcesso"/>
+			<input type="hidden" value="<%= pf.getId() %>" name="idPf"/>
+			
+			
+ 			<input type="submit" value="Listar Monitor"/>
+		</form>
 
 </body>
 </html>

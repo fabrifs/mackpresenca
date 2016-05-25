@@ -8,12 +8,20 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name="Disciplina")
+@NamedQueries(
+		{
+			@NamedQuery(name="disciplina.listaPorId",
+					query="select dis from Disciplina as dis where dis.id = :id")
+		}
+)
 public class Disciplina {
 	
 	@Id
@@ -32,7 +40,7 @@ public class Disciplina {
 	private Collection<DisciplinaHorario> disciplinaHorario;
 
 	
-	//TALVEZ TENHA LISTA DE DISCIPLINAS
+
 	
 	
 	public Collection<DisciplinaHorario> getDisciplinaHorario() {

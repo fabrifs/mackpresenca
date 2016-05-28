@@ -36,5 +36,16 @@ public class PessoaFisicaDao {
 		session.close();
 		return pf; // retornar o usuario
 	}
+	
+	public PessoaFisica listaPorIdComDh(int id) throws Exception {
+		session = HibernateUtil.getSessionFactory().openSession();
+		query = session.getNamedQuery("pessoaFisica.listaPorIdComDh");
+		query.setInteger("id", id);
+		
+		PessoaFisica pf = (PessoaFisica) query.uniqueResult();
+
+		session.close();
+		return pf; // retornar o usuario
+	}
 
 }

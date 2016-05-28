@@ -23,7 +23,11 @@ import javax.persistence.TemporalType;
 			@NamedQuery(name="aula.validaInicio", 
 					query="select au from Aula as au where au.disciplinaHorario.id = :idDh and au.professor.id = :idProfessor"),	
 			@NamedQuery(name="aula.findById", 
-				query="select au from Aula as au where au.id= :id")		
+					query="select au from Aula as au where au.id= :id"),	
+			@NamedQuery(name="aula.findByDateDisc", 
+				query="select au from Aula as au where au.disciplinaHorario.id = :idDh and au.data > :dataInicio and au.data < :dataFim"),	
+			@NamedQuery(name="aula.findByDate", 
+				query="select au from Aula as au where au.data > :dataInicio and au.data < :dataFim")	
 		}
 )
 public class Aula {

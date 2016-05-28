@@ -47,7 +47,7 @@
 			<br /> <br />
 			<c:if test="<%=dhteste != null%>">
         		DH:<%=dhteste.getTurma()%>
-        		<form action="AulaServlet?control=AulaComeco" method="post"> 
+        		<form action="MackPresenca?control=AulaComeco" method="post"> 
         		<input type="hidden" value="<%=pf.getId()%>" name="pflogada"/> 
         			<input type="hidden" value="<%= dhteste.getId() %>" name="dhagoraid"/>   		
         			Sala Padrão: <input type="text" name="sala" value="<%=dhteste.getSalaPadrao()%>"/>
@@ -73,17 +73,26 @@
 				</br>
 			</c:forEach>
 			</c:if>
-			<br /> <a href="LogoutServlet"> Sair do Sistema </a></b>
+			<br /> <a href="MackPresenca"> Sair do Sistema </a></b>
 			
 	<br>
 	
-	<form action="LoginServlet?control=Monitor" method="post">
+	<form action="MackPresenca?control=Monitor" method="post">
 			<input type="hidden" value="listar" name="operacao"/>
 			<input type="hidden" value="professor" name="tipoAcesso"/>
 			<input type="hidden" value="<%= pf.getId() %>" name="idPf"/>
 			
 			
  			<input type="submit" value="Listar Monitor"/>
+		</form>
+		
+		<form action="MackPresenca?control=ListarAula" method="post">
+			<input type="hidden" value="listarDisciplina" name="operacao"/>
+			<input type="hidden" value="professor" name="tipoAcesso"/>
+			<input type="hidden" value="<%= pf.getId() %>" name="idPf"/>
+			
+			
+ 			<input type="submit" value="Listar Aulas"/>
 		</form>
 
 </body>

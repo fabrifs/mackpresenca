@@ -53,23 +53,32 @@
         </br></br>
         </c:forEach>
         <br/>
-		<a href="LogoutServlet">
+		<a href="MackPresenca?action=Logout">
 				Sair do Sistema
 		</a>
 		<br/><br/>
-		<form action="FaltaServlet?control=VerificaFalta" method="post">
+		<form action="MackPresenca?control=VerificaFalta" method="post">
 			<input type="hidden" name="idAluno" value="<%= pf.getId() %>"/>
 			<input type="submit" value="Listar Faltas"/>
 		</form>
 
 		
-		<form action="LoginServlet?control=Monitor" method="post">
+		<form action="MackPresenca?control=Monitor" method="post">
 			<input type="hidden" value="listar" name="operacao"/>
 			<input type="hidden" value="aluno" name="tipoAcesso"/>
 			<input type="hidden" value="<%= pf.getId() %>" name="idPf"/>
 			
 			
  			<input type="submit" value="Listar Monitor"/>
+		</form>
+		
+		<form action="MackPresenca?control=ListarAula" method="post">
+			<input type="hidden" value="listarDisciplina" name="operacao"/>
+			<input type="hidden" value="professor" name="tipoAcesso"/>
+			<input type="hidden" value="<%= pf.getId() %>" name="idPf"/>
+			
+			
+ 			<input type="submit" value="Listar Aulas"/>
 		</form>
         
         </b>

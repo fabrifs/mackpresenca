@@ -37,7 +37,7 @@
 			<%=pf.getNome()%>
 			<br />
 
-			<form action="AulaServlet?control=AulaFim" method="post">
+			<form action="MackPresenca?control=AulaFim" method="post">
 
 				<input type="hidden" name="idAula" value="${idAula}" />
 				<input type="hidden" name="idDh" value="${idDh}" />
@@ -57,7 +57,7 @@
 				Conteúdo da aula:<br /> <input type="textfield" name="comentario" required /> <br /><br />
 				<input type="submit" value="Finalizar" />
 			</form>
-			<br /> <a href="LogoutServlet"> Sair do Sistema </a></b>
+			<br /> <a href="homeProfessor.jsp"> Home </a></b>
 	<br>
 
 </body>

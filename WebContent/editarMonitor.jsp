@@ -26,7 +26,7 @@
 		<br /> Sua data de nascimento: <%=pf.getNasc()%> <br /> 
 		
 		<!-- Lista de monitores, sem crud -->
-		<form method="post" action="LoginServlet?control=Monitor">		
+		<form method="post" action="MackPresenca?control=Monitor">		
 
 				<input type="hidden" value="<%=pf.getTipo_acesso()%>" name="tipoAcesso" /> 
 				<input type="hidden" value="alterar" name="operacao" /> 
@@ -40,49 +40,16 @@
 				Horário: <input type="text" name="horario" value="<%= monitor.getHorario() %>"/> </br> 
 				Dia da Semana: 
 				<select name="diaSemana">
-				<c:choose>
-					<c:when test="${mo.diaSemana == SEGUNDA }">
+
 						<option value="SEGUNDA" selected>SEGUNDA</option>
 						<option value="TERÇA">TERÇA</option>
 						<option value="QUARTA">QUARTA</option>
 						<option value="QUINTA">QUINTA</option>
 						<option value="SEXTA">SEXTA</option>
-					</c:when>
-					<c:when test="${mo.diaSemana == TERÇA }">
-						<option value="SEGUNDA" >SEGUNDA</option>
-						<option value="TERÇA" selected>TERÇA</option>
-						<option value="QUARTA">QUARTA</option>
-						<option value="QUINTA">QUINTA</option>
-						<option value="SEXTA">SEXTA</option>
-					</c:when>
-					<c:when test="${mo.diaSemana == QUARTA }">
-						<option value="SEGUNDA" >SEGUNDA</option>
-						<option value="TERÇA">TERÇA</option>
-						<option value="QUARTA" selected>QUARTA</option>
-						<option value="QUINTA">QUINTA</option>
-						<option value="SEXTA">SEXTA</option>
-					</c:when>
-					<c:when test="${mo.diaSemana == QUINTA }">
-						<option value="SEGUNDA">SEGUNDA</option>
-						<option value="TERÇA">TERÇA</option>
-						<option value="QUARTA">QUARTA</option>
-						<option value="QUINTA" selected>QUINTA</option>
-						<option value="SEXTA">SEXTA</option>
-					</c:when>
-					<c:when test="${mo.diaSemana == SEXTA }">
-						<option value="SEGUNDA" >SEGUNDA</option>
-						<option value="TERÇA">TERÇA</option>
-						<option value="QUARTA">QUARTA</option>
-						<option value="QUINTA">QUINTA</option>
-						<option value="SEXTA" selected>SEXTA</option>
-					</c:when>
-				</c:choose>
 				</select></br> 
 				<input type="submit" value="Editar Monitor" />
 			</form>
 
-		
-		
 		<a href="monitoria.jsp"> Voltar</a> <br /> <br />
 
 

@@ -23,9 +23,11 @@ import javax.persistence.TemporalType;
 @NamedQueries(
 		{
 			@NamedQuery(name="pessoaFisica.autenticar", 
-					query="select pf from PessoaFisica as pf join fetch  pf.disciplinaHorario where pf.ra = :ra and pf.senha = :senha and pf.tipo_acesso = :tipo_acesso"),	
+					query="select pf from PessoaFisica as pf join fetch pf.disciplinaHorario where pf.ra = :ra and pf.senha = :senha and pf.tipo_acesso = :tipo_acesso"),	
 			@NamedQuery(name="pessoaFisica.listaPorId", 
-			query="select pf from PessoaFisica as pf where pf.id = :id")	
+			query="select pf from PessoaFisica as pf where pf.id = :id"),	
+			@NamedQuery(name="pessoaFisica.listaPorIdComDh", 
+			query="select pf from PessoaFisica as pf join fetch pf.disciplinaHorario where pf.id = :id")	
 		}
 )
 public class PessoaFisica {

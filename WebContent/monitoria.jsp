@@ -38,7 +38,7 @@
 		<!-- Se for professor, exibe para inserção --> 
 		<c:if test="${professorValido != null }">
 		<h1>Opções para manter monitor</h1>
-			<form method="post" action="LoginServlet?control=Monitor">
+			<form method="post" action="MackPresenca?control=Monitor">
 
 				<input type="hidden" value="<%=pf.getTipo_acesso()%>" name="tipoAcesso" /> 
 				<input type="hidden" value="incluir" name="operacao" /> 
@@ -69,7 +69,7 @@
 	        Disciplina: ${mo.disciplina.nomeDisciplina }</br>
 	        Turma: ${mo.horario }</br>
 	        Período: ${mo.nomeAluno}</br>
-	        <form action="LoginServlet?control=Monitor" method="post">
+	        <form action="MackPresenca?control=Monitor" method="post">
 	        	<input type="hidden" value="<%=pf.getTipo_acesso()%>" name="tipoAcesso" /> 
 				<input type="hidden" value="excluir" name="operacao" /> 
 				<input type="hidden" value="<%=pf.getId()%>" name="idPf" /> 
@@ -79,7 +79,7 @@
 				<input type="submit" value="Excluir"/>
 	        </form>
 	        
-	         <form action="LoginServlet?control=Monitor" method="post">
+	         <form action="MackPresenca?control=Monitor" method="post">
 	        	<input type="hidden" value="<%=pf.getTipo_acesso()%>" name="tipoAcesso" /> 
 				<input type="hidden" value="editarCarrega" name="operacao" /> 
 				<input type="hidden" value="<%=pf.getId()%>" name="idPf" /> 
@@ -92,7 +92,11 @@
 			</c:forEach>
 		</c:if> 
 		<br /> 
-		<a href="LogoutServlet"> Sair do Sistema </a> <br /> <br />
+		<% if(pf.getTipo_acesso().equals("professor")){ %>
+			<a href="homeProfessor.jsp"> Home </a> <br /> <br />
+		<%}else if(pf.getTipo_acesso().equals("aluno")){ %>
+			<a href="homeAluno.jsp"> Home </a> <br /> <br />
+		<%} %>
 
 
 	</b>

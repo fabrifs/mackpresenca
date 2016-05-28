@@ -19,7 +19,6 @@ public class MonitorController extends AbstractController {
 	List<Disciplina> disciplinas = new ArrayList<>();
 	List<Monitor> monitores = new ArrayList<>();
 
-
 	MonitorDao md = new MonitorDao();
 
 	public void execute() {
@@ -32,11 +31,12 @@ public class MonitorController extends AbstractController {
 				excluirMonitor();
 				listarMonitor();
 				this.setReturnPage("/monitoria.jsp");
-			}else if (op.equals("editarCarrega")) {
+			} else if (op.equals("editarCarrega")) {
 				carregaMonitor();
 				this.setReturnPage("/editarMonitor.jsp");
 			} else if (op.equals("alterar")) {
 				alterarMonitor();
+				listarMonitor();
 				this.setReturnPage("/monitoria.jsp");
 			} else if (op.equals("incluir")) {
 				incluir();
@@ -48,7 +48,6 @@ public class MonitorController extends AbstractController {
 		} catch (Exception e) {
 			String tipoAcesso = this.getRequest().getParameter("tipoAcesso");
 			this.getRequest().setAttribute("msg", e.getMessage());
-			e.printStackTrace();
 			if (tipoAcesso.equals("aluno")) {
 				this.setReturnPage("/homeAluno.jsp");
 			} else if (tipoAcesso.equals("professor")) {
@@ -56,56 +55,81 @@ public class MonitorController extends AbstractController {
 			} else {
 				this.setReturnPage("/login.jsp");
 			}
-			
+
 		}
 	}
 
-	public void incluir() throws Exception{
+	public void incluir() throws Exception {
 		int idDisciplina = Integer.parseInt(this.getRequest().getParameter("idDisciplina"));
 		String nomeAluno = this.getRequest().getParameter("nomeMonitor");
 		String diaSemana = this.getRequest().getParameter("diaSemana");
 		String horario = this.getRequest().getParameter("horario");
-		
+
 		Monitor monitor = new Monitor();
 		monitor.setNomeAluno(nomeAluno);
-		
+
 		DisciplinaDao dd = new DisciplinaDao();
 		Disciplina disciplina = dd.listaPorId(idDisciplina);
-		if(disciplina != null){
+		if (disciplina != null) {
 			monitor.setDisciplina(disciplina);
-		}else{
+		} else {
 			throw new Exception("Disciplina não encontrada. Tente novamente.");
 		}
-		if(diaSemana.equals("SEGUNDA")){
+		if (diaSemana.equals("SEGUNDA")) {
 			monitor.setDia_semana(DiaSemana.SEGUNDA);
-		}else if(diaSemana.equals("TERCA")){
+		} else if (diaSemana.equals("TERÇA")) {
 			monitor.setDia_semana(DiaSemana.TERÇA);
-		}else if(diaSemana.equals("QUARTA")){
+		} else if (diaSemana.equals("QUARTA")) {
 			monitor.setDia_semana(DiaSemana.QUARTA);
-		}else if(diaSemana.equals("QUINTA")){
+		} else if (diaSemana.equals("QUINTA")) {
 			monitor.setDia_semana(DiaSemana.QUINTA);
-		}else if(diaSemana.equals("SEXTA")){
+		} else if (diaSemana.equals("SEXTA")) {
 			monitor.setDia_semana(DiaSemana.SEXTA);
-		}else{
+		} else {
 			throw new Exception("Dia da semana inválido. Tente novamente.");
 		}
 		monitor.setHorario(horario);
-		
+
 		MonitorDao md = new MonitorDao();
 		md.save(monitor);
-		
+
 	}
 
 	public void alterarMonitor() throws Exception {
 		int idMonitor = Integer.parseInt(this.getRequest().getParameter("idMonitor"));
+		String nomeNovo = this.getRequest().getParameter("nomeMonitor");
+		String horarioNovo = this.getRequest().getParameter("horario");
+		String diaNovo = this.getRequest().getParameter("diaSemana");
+		
 		Monitor monitor = md.listaPorId(idMonitor);
 		if (monitor != null) {
+			if(nomeNovo != null && !nomeNovo.equals("")){
+				monitor.setNomeAluno(nomeNovo);			
+			}
+			if(horarioNovo != null && !horarioNovo.equals("")){
+				monitor.setHorario(horarioNovo);
+			}
+			if(diaNovo != null && !diaNovo.equals("")){
+				if (diaNovo.equals("SEGUNDA")) {
+					monitor.setDia_semana(DiaSemana.SEGUNDA);
+				} else if (diaNovo.equals("TERÇA")) {
+					monitor.setDia_semana(DiaSemana.TERÇA);
+				} else if (diaNovo.equals("QUARTA")) {
+					monitor.setDia_semana(DiaSemana.QUARTA);
+				} else if (diaNovo.equals("QUINTA")) {
+					monitor.setDia_semana(DiaSemana.QUINTA);
+				} else if (diaNovo.equals("SEXTA")) {
+					monitor.setDia_semana(DiaSemana.SEXTA);
+				} else {
+					throw new Exception("Dia da semana inválido. Tente novamente.");
+				}
+			}
 			md.update(monitor);
 		} else {
 			throw new Exception("Monitor não encontrado. Tente novamente.");
 		}
 	}
-	
+
 	public void carregaMonitor() throws Exception {
 		HttpSession session = this.getRequest().getSession();
 		int idMonitor = Integer.parseInt(this.getRequest().getParameter("idMonitor"));
@@ -133,7 +157,7 @@ public class MonitorController extends AbstractController {
 		String tipoAcesso = this.getRequest().getParameter("tipoAcesso");
 		if (tipoAcesso.equals("professor"))
 			listaMonitorCoordenador();
-		
+
 	}
 
 	public void listaDH() throws Exception {
@@ -145,7 +169,7 @@ public class MonitorController extends AbstractController {
 		for (DisciplinaHorario dh : listaDH) {
 			this.disciplinas.add(dh.getDisciplina());
 		}
-		if(this.disciplinas.size() > 0 && this.disciplinas != null){
+		if (this.disciplinas.size() > 0 && this.disciplinas != null) {
 			session.setAttribute("disciplinas", this.disciplinas);
 		}
 	}
@@ -155,21 +179,20 @@ public class MonitorController extends AbstractController {
 		for (Disciplina dis : this.disciplinas) {
 			List<Monitor> monitor = md.listaPorDisciplina(dis.getId());
 			if (monitor.size() > 0 && monitor.get(0) != null) {
-				this.monitores.add(monitor.get(0));
+				for (Monitor moni : monitor) {
+					this.monitores.add(moni);
+				}
 			}
 		}
-		if(this.monitores != null && this.monitores.size() > 0){
+		if (this.monitores != null && this.monitores.size() > 0) {
 			session.setAttribute("monitorGeral", this.monitores);
-		}else{
-			throw new Exception("Monitor não encontrado. Tente novamente.");
 		}
 	}
 
 	public void listaMonitorCoordenador() {
 		HttpSession session = this.getRequest().getSession();
 		session.setAttribute("professorValido", "valido");
-		
-		
+
 		int idPf = Integer.parseInt(this.getRequest().getParameter("idPf"));
 		List<Monitor> monitorCoord = new ArrayList<>();
 		for (Monitor mor : this.monitores) {

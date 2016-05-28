@@ -6,7 +6,7 @@
     </head>
     <body>
 
-        <form action="LoginServlet?control=Login" method="post">
+        <form action="MackPresenca?control=Login" method="post">
 			
 			<input type="radio" name="tipoAcesso" value="professor"/> Professor
 			<input type="radio" name="tipoAcesso" value="aluno"/> Aluno

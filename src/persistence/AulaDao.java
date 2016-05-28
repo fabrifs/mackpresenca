@@ -64,5 +64,36 @@ public class AulaDao {
 		session.close();
 		return aula;
 	}
+	
+	public List<Aula> achaAulaPorData(Date dataInicio, Date dataFim) throws Exception {
+		session = HibernateUtil.getSessionFactory().openSession();
+
+		transaction = session.beginTransaction();
+
+		query = session.getNamedQuery("aula.findByDate");
+		query.setDate("dataInicio", dataInicio);
+		query.setDate("dataFim", dataFim);
+
+		List<Aula> aula = query.list();
+		transaction.commit();
+		session.close();
+		return aula;
+	}
+	
+	public List<Aula> achaAulaPorDataDis(Date dataInicio, Date dataFim, int idDh) throws Exception {
+		session = HibernateUtil.getSessionFactory().openSession();
+
+		transaction = session.beginTransaction();
+
+		query = session.getNamedQuery("aula.findByDateDisc");
+		query.setInteger("idDh", idDh);
+		query.setDate("dataInicio", dataInicio);
+		query.setDate("dataFim", dataFim);
+
+		List<Aula> aula = query.list();
+		transaction.commit();
+		session.close();
+		return aula;
+	}
 
 }

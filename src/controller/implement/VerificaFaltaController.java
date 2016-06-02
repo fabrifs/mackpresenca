@@ -56,13 +56,14 @@ public class VerificaFaltaController extends AbstractController{
 			int faltas = pd.listaFaltas(idAluno, dis.getId());	
 			Falta falta = new Falta();
 			falta.setNomeDisciplina(dis.getNomeDisciplina());
-			falta.setPorcentagemPermitida(dis.getCargaHoraria() * 0.25);
+			falta.setFaltasPermitida((int)(dis.getCargaHoraria() * 0.25));
 			falta.setQuantidadeAulas(dis.getCargaHoraria());
 			falta.setQuantidadeFaltas(faltas);
+			falta.setFaltasRestante((int)(dis.getCargaHoraria() * 0.25) - faltas);
 			if((faltas * 100)/dis.getCargaHoraria() < 25.0){
-				falta.setPorcentagemFaltasRestante(25.0 -(faltas * 100)/dis.getCargaHoraria());
+				falta.setPorcentagemFaltas(25.0 -(faltas * 100)/dis.getCargaHoraria());
 			}else{
-				falta.setPorcentagemFaltasRestante(0.0);
+				falta.setPorcentagemFaltas(0.0);
 			}
 			faltasList.add(falta);
 		}

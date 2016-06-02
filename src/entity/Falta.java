@@ -2,70 +2,89 @@ package entity;
 
 public class Falta {
 	
-	private String nomeDisciplina;
-	
+	private String nomeDisciplina;	
 	private int quantidadeAulas;
+	private int faltasPermitida;
 	
-	private int quantidadeFaltas;
+	private int quantidadeFaltas;	
+	private int faltasRestante;
+	private double porcentagemFaltas;
 	
-	private double porcentagemPermitida;
-	
-	private double porcentagemFaltasRestante;
 	
 	public Falta(){
 		
 	}
 
+
 	public String getNomeDisciplina() {
 		return nomeDisciplina;
 	}
+
 
 	public void setNomeDisciplina(String nomeDisciplina) {
 		this.nomeDisciplina = nomeDisciplina;
 	}
 
+
 	public int getQuantidadeAulas() {
 		return quantidadeAulas;
 	}
+
 
 	public void setQuantidadeAulas(int quantidadeAulas) {
 		this.quantidadeAulas = quantidadeAulas;
 	}
 
+
+	public int getFaltasPermitida() {
+		return faltasPermitida;
+	}
+
+
+	public void setFaltasPermitida(int faltasPermitida) {
+		this.faltasPermitida = faltasPermitida;
+	}
+
+
 	public int getQuantidadeFaltas() {
 		return quantidadeFaltas;
 	}
+
 
 	public void setQuantidadeFaltas(int quantidadeFaltas) {
 		this.quantidadeFaltas = quantidadeFaltas;
 	}
 
-	public double getPorcentagemPermitida() {
-		return porcentagemPermitida;
+
+	public int getFaltasRestante() {
+		return faltasRestante;
 	}
 
-	public void setPorcentagemPermitida(double porcentagemPermitida) {
-		this.porcentagemPermitida = porcentagemPermitida;
+
+	public void setFaltasRestante(int faltasRestante) {
+		this.faltasRestante = faltasRestante;
 	}
 
-	public double getPorcentagemFaltasRestante() {
-		return porcentagemFaltasRestante;
+
+	public double getPorcentagemFaltas() {
+		return porcentagemFaltas;
 	}
 
-	public void setPorcentagemFaltasRestante(double porcentagemFaltasRestante) {
-		this.porcentagemFaltasRestante = porcentagemFaltasRestante;
+
+	public void setPorcentagemFaltas(double porcentagemFaltas) {
+		this.porcentagemFaltas = porcentagemFaltas;
 	}
 
-	public Falta(String nomeDisciplina, int quantidadeAulas, int quantidadeFaltas, double porcentagemPermitida,
-			double porcentagemFaltasRestante) {
+
+	public Falta(String nomeDisciplina, int quantidadeAulas, int faltasPermitida, int quantidadeFaltas,
+			int faltasRestante, double porcentagemFaltas) {
 		super();
 		this.nomeDisciplina = nomeDisciplina;
 		this.quantidadeAulas = quantidadeAulas;
+		this.faltasPermitida = faltasPermitida;
 		this.quantidadeFaltas = quantidadeFaltas;
-		this.porcentagemPermitida = porcentagemPermitida;
-		this.porcentagemFaltasRestante = porcentagemFaltasRestante;
+		this.faltasRestante = faltasRestante;
+		this.porcentagemFaltas = porcentagemFaltas;
 	}
-	
-	
 
 }

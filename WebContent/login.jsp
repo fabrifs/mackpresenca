@@ -1,27 +1,38 @@
+
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
+
+
     <head>
+    
+    	<script type="text/javascript" src="bootstrap.js"></script>
+		<link rel="stylesheet" type="text/css" href="bootstrap.css" />
         <meta charset="UTF-8">
         <title >Login Mack Presença</title>
     </head>
     <body>
 
-        <form action="MackPresenca?control=Login" method="post">
-			
+	<div class="well" style="width: 10%; height: 15%;">
+		<c:if test="${msg != null }">
+			<div class="alert alert-danger" role="alert">${msg}</div>
+		</c:if>
+        <form action="MackPresenca?control=Login" method="post"> 
 			<input type="radio" name="tipoAcesso" value="professor"/> Professor
 			<input type="radio" name="tipoAcesso" value="aluno"/> Aluno
 			<br><br>
-           	RA:<input type="text" name="ra" required/>
+			<div class="form-group">
+           	RA:<input type="text" name="ra" required class="form-control" placeholder="RA" style="width: 100px;"/>
             <br>
-            Senha: <input type="password" name="senha" required/>
+            Senha: <input type="password" name="senha" required class="form-control" placeholder="Senha" style="width: 100px;"/>
             <br>
-            <input type="submit" value="Login">
-            
-            
-            
-            
+              </div>
+            <button type="submit" class="btn btn-default">Submit</button>    
+          
         </form>
+        
+        </div>  
      
-     <p style="color:red;"><b>${msg}</b></p>
+     
     </body>
 </html>

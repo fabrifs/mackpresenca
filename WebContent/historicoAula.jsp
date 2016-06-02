@@ -8,22 +8,71 @@
 <%@page import="entity.PessoaFisica"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+	<script type="text/javascript" src="bootstrap.js"></script>
+	<link rel="stylesheet" type="text/css" href="bootstrap.css" />
+	<link href="style.css" rel="stylesheet">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Histórico de Aulas - MackPresença</title>
 </head>
 <body>
+	<header> <img src="img/logo.png" alt="logo" style="margin-bottom: 10px;"> </header>
 
-	<%
-		PessoaFisica pf = (PessoaFisica) session.getAttribute("pf");
-	%>
-	<b> Bem vindo aluno <%=pf.getNome()%> 
-	<br /> 
-	<br /> 
-	Seu RA é: <%=pf.getRa()%>
-		<br /> 
-		<br /> Sua data de nascimento: <%=pf.getNasc()%> <br /> 
+
+<div class="well" style="width: 20%; height: 20%; float: left; margin-right: 10px; border: 1px solid black;">
+
+		<%PessoaFisica pf = (PessoaFisica) session.getAttribute("pf");%>
+		<b> Bem vindo, <%=pf.getNome()%> </b>
+		<br/> 
+		<br/> 
+		RA: <%=pf.getRa()%>
+		<br/> 
+		<br/> 
+		Data de nascimento: <%=pf.getNasc()%> 
+		<br/> 
+		<br/>
+		E-mail: <%=pf.getEmail()%> 
+		<br/> 
+		<br/>
+		<br/>
+
+		<% if(pf.getTipo_acesso().equals("professor")){ %>
+			<a href="homeProfessor.jsp"><button class="btn btn-danger" type="submit">Home</button></a>
+			<br/>
+		<%}else if(pf.getTipo_acesso().equals("aluno")){ %>
+			<a href="homeAluno.jsp"><button class="btn btn-danger" type="submit">Home</button></a>
+			
+			<br/>
+			<br/>
+			<form action="MackPresenca?control=VerificaFalta" method="post">
+				<input type="hidden" name="idAluno" value="<%=pf.getId()%>" />
+				<button class="btn btn-danger" type="submit">Listar Faltas</button>
+			</form> 
 		
-		<!-- Lista de monitores, sem crud -->
+		<%} %>
+		<br/>
+			
+		<form action="MackPresenca?control=ListarAula" method="post">
+			<input type="hidden" value="listarDisciplina" name="operacao"/>
+			<input type="hidden" value="<%=pf.getTipo_acesso()%>" name="tipoAcesso"/> 
+			<input type="hidden" value="<%=pf.getId()%>" name="idPf"/>
+
+			<button class="btn btn-danger" type="submit">Listar Aulas</button>
+		</form>  
+		<br/>	
+		
+		<form action="MackPresenca?control=Monitor" method="post">
+			<input type="hidden" value="listar" name="operacao"/> 
+			<input type="hidden" value="<%=pf.getTipo_acesso()%>" name="tipoAcesso"/> 
+			<input type="hidden" value="<%=pf.getId()%>" name="idPf"/>
+
+			<button class="btn btn-danger" type="submit">Listar Monitor</button>
+		</form> 
+		<br/>		
+		
+		<a href="MackPresenca?action=Logout"><button class="btn btn-danger" type="submit">Sair do Sistema</button></a>
+	</div>
+
+ <div class="well" style="width: 30%; height: 20%; margin-left: 15px; float: left; text-align: center; border: 1px solid black;">
 		<form action="MackPresenca?control=ListarAula" method="post">
 		
 			<input type="hidden" name="tipoAcesso" value="<%= pf.getTipo_acesso() %>"/>
@@ -41,37 +90,41 @@
 					</c:forEach>
 				</select>
 			</c:if>
-			
+			<br/><br/>
 			Data Inicio: <input type="date" name="dataInicio" required/>
-			
+			<br/><br/>
 			Data Fim: <input type="date" name="dataFim" required/>
-			
-			<input type="submit" value="Listar Aulas"/>
+			<br/><br/>
+			<button class="btn btn-danger" type="submit">Listar Aulas</button>
 			
 		</form>
-		
+		<br/>
+		</br>
 		<c:if test="${aulas  != null}">
-				Aulas: 
 
+			<table style="width:100%">
+				<tr>	
+					<th>Disciplina</th>
+					<th>Professor</th>
+					<th>Data</th>
+					<th>Comentário</th>										
+					
+				</tr>
 					<c:forEach items="${aulas}" var="aula">
-						Comentário: ${aula.comentario }
-						Professor: ${aula.professor.nome }
-						Disciplina: ${aula.disciplinaHorario.disciplina.nomeDisciplina }
-						<br/>
-						<br/>
+					<tr>
+						<td>${aula.disciplinaHorario.disciplina.nomeDisciplina }</td>
+						<td>${aula.professor.nome }</td>
+						<td>${aula.data }</td>
+						<td>${aula.comentario }</td>
+						
+						
+					</tr>
 					</c:forEach>
+			</table>
 			</c:if>
-
-		
-		<% if(pf.getTipo_acesso().equals("professor")){ %>
-			<a href="homeProfessor.jsp"> Home </a> <br /> <br />
-		<%}else if(pf.getTipo_acesso().equals("aluno")){ %>
-			<a href="homeAluno.jsp"> Home </a> <br /> <br />
-		<%} %>
-		
-
-	</b>
 	<br>
+</div>
 
+<footer></footer>
 </body>
 </html>

@@ -85,7 +85,7 @@
 			<c:if test="${msg != null }">
 			<div class="alert alert-danger" role="alert">${msg}</div>
 		</c:if>
-			<c:if test="<%=dhteste != null%>">		
+	<c:if test="<%=dhteste != null%>">		
 		<!-- janela modal excluir-->
 		<div class="modal fade" id="modal-aula">
 			<div class="modal-dialog">
@@ -121,20 +121,30 @@
 
 	</c:if>		
 
-			<c:if test="${lista != null }">
-			<c:forEach items="${lista}" var="dh">
-				</br>
-				</br>
-		        Disciplina: ${dh.disciplina.nomeDisciplina }</br>
-		        Turma: ${dh.turma }</br>
-		        Período: ${dh.periodo}</br>
-		        Dia da Semana: ${dh.diaSemana }</br>
-		        Predio Padrão: ${dh.predioPadrao }</br>
-		        Sala Padrão: ${dh.salaPadrao}
-        
-        </br>
-				</br>
-			</c:forEach>
+		<c:if test="${lista != null }">
+        <table style="width:100%">
+				<tr>	
+					<th>Disciplina</th>
+					<th>Turma</th>	
+					<th>Período</th>	
+					<th>Dia da Semana</th>
+					<th>Predio Padrão</th>		
+					<th>Sala Padrão</th>						
+				</tr>
+				
+					  <c:forEach items="${lista}" var="dh">
+					<tr>
+				        <td>${dh.disciplina.nomeDisciplina }</td>
+				        <td>${dh.turma }</td>
+				        <td>${dh.periodo}</td>
+				        <td>${dh.diaSemana }</td>
+				        <td>${dh.predioPadrao }</td>
+				        <td>${dh.salaPadrao}</td>
+				        </tr>
+					</c:forEach>
+				
+			</table>
+			
 			</c:if>
 
 		</div>

@@ -13,7 +13,7 @@
     </head>
     <body>
 
-	<div class="well" style="width: 10%; height: 15%;">
+	<div class="well" style="width: 350px; height: 400px;">
 		<c:if test="${msg != null }">
 			<div class="alert alert-danger" role="alert">${msg}</div>
 		</c:if>

@@ -77,23 +77,35 @@
 		<c:if test="${msg != null }">
 			<div class="alert alert-danger" role="alert">${msg}</div>
 		</c:if>
-		<c:forEach items="${lista}" var="dh">
+		<br/>
+		<br/>
+		<c:if test="${lista != null }">
+		
+        <table style="width:100%">
+				<tr>	
+					<th>Disciplina</th>
+					<th>Turma</th>	
+					<th>Período</th>	
+					<th>Dia da Semana</th>
+					<th>Predio Padrão</th>		
+					<th>Sala Padrão</th>						
+				</tr>
+				
+					  <c:forEach items="${lista}" var="dh">
+					<tr>
+				        <td>${dh.disciplina.nomeDisciplina }</td>
+				        <td>${dh.turma }</td>
+				        <td>${dh.periodo}</td>
+				        <td>${dh.diaSemana }</td>
+				        <td>${dh.predioPadrao }</td>
+				        <td>${dh.salaPadrao}</td>
+				        </tr>
+					</c:forEach>
+				
+			</table>
+			
+			</c:if>
 
-        <b>Disciplina: ${dh.disciplina.nomeDisciplina }</b>
-		</br>
-        Turma: ${dh.turma }
-		</br>
-        Período: ${dh.periodo}
-		</br>
-        Dia da Semana: ${dh.diaSemana }
-		</br>
-        Predio Padrão: ${dh.predioPadrao }
-		</br>
-        Sala Padrão: ${dh.salaPadrao}
-        
-        </br>
-		</br>
-		</c:forEach>
 
 	</div>
 
